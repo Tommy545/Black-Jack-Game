@@ -31,15 +31,54 @@ newgamebutton.addEventListener("click", function(){
 
     dealerc = [nextcard(), nextcard()]
     playerc = [nextcard(), nextcard()]
+    console.log(deck);
     console.log(dealerc, " ", playerc);
 
-    textcontent.innerHTML = "Dealer: <br>" + convertor(dealerc) + "Points: <br>" + "<br> Player: <br>" + convertor(playerc) + "Points: <br>"
+    textcontent.innerHTML = "Dealer: <br>" + convertor(dealerc) + "Points:" + check(dealerc) + "<br>" + "<br> Player: <br>" + convertor(playerc) + "Points:" + check(playerc) + "<br>"
 });
 
 hitbutton.addEventListener("click", function(){
     playerc.push(nextcard())
-    textcontent.innerHTML = "Dealer: <br>" + convertor(dealerc) + "Points: <br>" + "<br> Player: <br>" + convertor(playerc) + "Points: <br>"
+    textcontent.innerHTML = "Dealer: <br>" + convertor(dealerc) + "Points:" + check(dealerc) + "<br>" + "<br> Player: <br>" + convertor(playerc) + "Points:" + check(playerc) + "<br>"
+
+    
 });
+
+function checknumberval(card){
+    switch(card.value){
+        case "Ace":
+        return 1;
+        case "Two":
+        return 2;
+        case "Three":
+        return 3;
+        case "Four":
+        return 4;
+        case "Five":
+        return 5
+        case "Six":
+        return 6;
+        case "Seven":
+        return 7;
+        case "Eight":
+        return 8;
+        case "Nine":
+        return 9;
+        default:
+        return 10
+    }
+}
+
+function check(cards){
+    console.log(cards)
+    let value = 0;
+    for(let i = 0; i < cards.length; i++){
+        value = value + checknumberval(cards[i]);
+        if(cards.length - 1 == i){
+            return value;
+        }
+    }
+}
 
 function newgame() {
     deck = [];
